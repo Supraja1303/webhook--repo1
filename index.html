@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStax Developer Assessment</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <i class="fas fa-code"></i>
+                    <span>TechStax Assessment</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#" class="nav-link active" data-page="dashboard">Dashboard</a>
+                    <a href="#" class="nav-link" data-page="assessments">Assessments</a>
+                    <a href="#" class="nav-link" data-page="results">Results</a>
+                    <a href="#" class="nav-link" data-page="profile">Profile</a>
+                </div>
+                <div class="nav-user">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Page -->
+            <div id="dashboard-page" class="page active">
+                <div class="page-header">
+                    <h1>Welcome to Your Developer Assessment</h1>
+                    <p>Complete comprehensive evaluations to showcase your technical skills</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>12</h3>
+                            <p>Assessments Available</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>8</h3>
+                            <p>Completed</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>87%</h3>
+                            <p>Average Score</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>3</h3>
+                            <p>Certifications</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-content">
+                    <div class="current-assessment">
+                        <h2>Current Assessment</h2>
+                        <div class="assessment-card featured">
+                            <div class="assessment-header">
+                                <h3>Full-Stack Developer Assessment</h3>
+                                <span class="difficulty-badge advanced">Advanced</span>
+                            </div>
+                            <div class="assessment-details">
+                                <p>Comprehensive evaluation covering React, Node.js, databases, and system design</p>
+                                <div class="assessment-meta">
+                                    <span><i class="fas fa-clock"></i> 120 minutes</span>
+                                    <span><i class="fas fa-question-circle"></i> 45 questions</span>
+                                    <span><i class="fas fa-code"></i> 3 coding challenges</span>
+                                </div>
+                            </div>
+                            <div class="assessment-progress">
+                                <div class="progress-info">
+                                    <span>Progress: 60%</span>
+                                    <span>27/45 completed</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 60%"></div>
+                                </div>
+                            </div>
+                            <div class="assessment-actions">
+                                <button class="btn btn-primary" onclick="startAssessment()">
+                                    <i class="fas fa-play"></i>
+                                    Continue Assessment
+                                </button>
+                                <button class="btn btn-secondary">
+                                    <i class="fas fa-info-circle"></i>
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recent-activity">
+                        <h2>Recent Activity</h2>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-icon success">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>JavaScript Fundamentals</h4>
+                                    <p>Completed with 92% score</p>
+                                    <span class="activity-time">2 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon info">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>React Components</h4>
+                                    <p>Started assessment</p>
+                                    <span class="activity-time">1 day ago</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon warning">
+                                    <i class="fas fa-pause"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>Database Design</h4>
+                                    <p>Assessment paused</p>
+                                    <span class="activity-time">3 days ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Assessment Page -->
+            <div id="assessment-page" class="page">
+                <div class="assessment-container">
+                    <div class="assessment-sidebar">
+                        <div class="assessment-info">
+                            <h3>Full-Stack Developer Assessment</h3>
+                            <div class="timer">
+                                <i class="fas fa-clock"></i>
+                                <span id="timer-display">01:45:30</span>
+                            </div>
+                            <div class="question-progress">
+                                <div class="progress-circle">
+                                    <svg viewBox="0 0 36 36">
+                                        <path class="circle-bg" d="M18 2.0845
+                                            a 15.9155 15.9155 0 0 1 0 31.831
+                                            a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                        <path class="circle" stroke-dasharray="60, 100" d="M18 2.0845
+                                            a 15.9155 15.9155 0 0 1 0 31.831
+                                            a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                    </svg>
+                                    <div class="progress-text">
+                                        <span class="current">27</span>
+                                        <span class="total">/45</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="question-navigator">
+                            <h4>Questions</h4>
+                            <div class="question-grid">
+                                <!-- Questions will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="assessment-main">
+                        <div class="question-container">
+                            <div class="question-header">
+                                <span class="question-number">Question 27 of 45</span>
+                                <span class="question-category">React Components</span>
+                            </div>
+                            <div class="question-content">
+                                <h3>What is the correct way to handle state updates in React functional components?</h3>
+                                <div class="question-options">
+                                    <label class="option">
+                                        <input type="radio" name="answer" value="A">
+                                        <span class="option-letter">A</span>
+                                        <span class="option-text">Directly mutating the state variable</span>
+                                    </label>
+                                    <label class="option">
+                                        <input type="radio" name="answer" value="B">
+                                        <span class="option-letter">B</span>
+                                        <span class="option-text">Using the setState function from useState hook</span>
+                                    </label>
+                                    <label class="option">
+                                        <input type="radio" name="answer" value="C">
+                                        <span class="option-letter">C</span>
+                                        <span class="option-text">Modifying the state directly with assignment</span>
+                                    </label>
+                                    <label class="option">
+                                        <input type="radio" name="answer" value="D">
+                                        <span class="option-letter">D</span>
+                                        <span class="option-text">Using this.setState() method</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="question-actions">
+                                <button class="btn btn-secondary" onclick="previousQuestion()">
+                                    <i class="fas fa-chevron-left"></i>
+                                    Previous
+                                </button>
+                                <button class="btn btn-primary" onclick="nextQuestion()">
+                                    Next
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Assessments List Page -->
+            <div id="assessments-page" class="page">
+                <div class="page-header">
+                    <h1>Available Assessments</h1>
+                    <p>Choose from our comprehensive collection of technical assessments</p>
+                </div>
+                
+                <div class="filters">
+                    <div class="filter-group">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="frontend">Frontend</button>
+                        <button class="filter-btn" data-filter="backend">Backend</button>
+                        <button class="filter-btn" data-filter="fullstack">Full-Stack</button>
+                        <button class="filter-btn" data-filter="devops">DevOps</button>
+                    </div>
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search assessments...">
+                    </div>
+                </div>
+
+                <div class="assessments-grid">
+                    <div class="assessment-card" data-category="frontend">
+                        <div class="assessment-header">
+                            <h3>React Developer</h3>
+                            <span class="difficulty-badge intermediate">Intermediate</span>
+                        </div>
+                        <div class="assessment-details">
+                            <p>Test your React knowledge including hooks, state management, and component lifecycle</p>
+                            <div class="assessment-meta">
+                                <span><i class="fas fa-clock"></i> 90 min</span>
+                                <span><i class="fas fa-question-circle"></i> 35 questions</span>
+                            </div>
+                        </div>
+                        <div class="assessment-actions">
+                            <button class="btn btn-primary">Start Assessment</button>
+                        </div>
+                    </div>
+
+                    <div class="assessment-card" data-category="backend">
+                        <div class="assessment-header">
+                            <h3>Node.js Backend</h3>
+                            <span class="difficulty-badge advanced">Advanced</span>
+                        </div>
+                        <div class="assessment-details">
+                            <p>Comprehensive Node.js evaluation covering APIs, databases, and server architecture</p>
+                            <div class="assessment-meta">
+                                <span><i class="fas fa-clock"></i> 120 min</span>
+                                <span><i class="fas fa-question-circle"></i> 40 questions</span>
+                            </div>
+                        </div>
+                        <div class="assessment-actions">
+                            <button class="btn btn-primary">Start Assessment</button>
+                        </div>
+                    </div>
+
+                    <div class="assessment-card" data-category="frontend">
+                        <div class="assessment-header">
+                            <h3>JavaScript Fundamentals</h3>
+                            <span class="difficulty-badge beginner">Beginner</span>
+                        </div>
+                        <div class="assessment-details">
+                            <p>Essential JavaScript concepts including ES6+, async programming, and DOM manipulation</p>
+                            <div class="assessment-meta">
+                                <span><i class="fas fa-clock"></i> 60 min</span>
+                                <span><i class="fas fa-question-circle"></i> 25 questions</span>
+                            </div>
+                        </div>
+                        <div class="assessment-actions">
+                            <button class="btn btn-success">
+                                <i class="fas fa-check"></i>
+                                Completed (92%)
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="assessment-card" data-category="fullstack">
+                        <div class="assessment-header">
+                            <h3>Full-Stack Developer</h3>
+                            <span class="difficulty-badge advanced">Advanced</span>
+                        </div>
+                        <div class="assessment-details">
+                            <p>Complete evaluation of full-stack skills including frontend, backend, and databases</p>
+                            <div class="assessment-meta">
+                                <span><i class="fas fa-clock"></i> 150 min</span>
+                                <span><i class="fas fa-question-circle"></i> 50 questions</span>
+                            </div>
+                        </div>
+                        <div class="assessment-actions">
+                            <button class="btn btn-warning">
+                                <i class="fas fa-play"></i>
+                                Continue (60%)
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="assessment-card" data-category="devops">
+                        <div class="assessment-header">
+                            <h3>DevOps & Cloud</h3>
+                            <span class="difficulty-badge intermediate">Intermediate</span>
+                        </div>
+                        <div class="assessment-details">
+                            <p>Docker, Kubernetes, CI/CD pipelines, and cloud platform knowledge</p>
+                            <div class="assessment-meta">
+                                <span><i class="fas fa-clock"></i> 100 min</span>
+                                <span><i class="fas fa-question-circle"></i> 35 questions</span>
+                            </div>
+                        </div>
+                        <div class="assessment-actions">
+                            <button class="btn btn-primary">Start Assessment</button>
+                        </div>
+                    </div>
+
+                    <div class="assessment-card" data-category="backend">
+                        <div class="assessment-header">
+                            <h3>Database Design</h3>
+                            <span class="difficulty-badge intermediate">Intermediate</span>
+                        </div>
+                        <div class="assessment-details">
+                            <p>SQL, NoSQL, database optimization, and data modeling concepts</p>
+                            <div class="assessment-meta">
+                                <span><i class="fas fa-clock"></i> 80 min</span>
+                                <span><i class="fas fa-question-circle"></i> 30 questions</span>
+                            </div>
+                        </div>
+                        <div class="assessment-actions">
+                            <button class="btn btn-primary">Start Assessment</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Page -->
+            <div id="results-page" class="page">
+                <div class="page-header">
+                    <h1>Assessment Results</h1>
+                    <p>Track your progress and performance across all assessments</p>
+                </div>
+
+                <div class="results-summary">
+                    <div class="summary-card">
+                        <h3>Overall Performance</h3>
+                        <div class="performance-chart">
+                            <div class="chart-placeholder">
+                                <i class="fas fa-chart-bar"></i>
+                                <p>Performance visualization would go here</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-table">
+                    <h3>Recent Results</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Assessment</th>
+                                <th>Date</th>
+                                <th>Score</th>
+                                <th>Time</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>JavaScript Fundamentals</td>
+                                <td>Dec 15, 2024</td>
+                                <td><span class="score excellent">92%</span></td>
+                                <td>45 min</td>
+                                <td><span class="status completed">Completed</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-secondary">View Details</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>React Components</td>
+                                <td>Dec 14, 2024</td>
+                                <td><span class="score good">85%</span></td>
+                                <td>72 min</td>
+                                <td><span class="status completed">Completed</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-secondary">View Details</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Full-Stack Developer</td>
+                                <td>Dec 13, 2024</td>
+                                <td><span class="score partial">60%</span></td>
+                                <td>90 min</td>
+                                <td><span class="status in-progress">In Progress</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary">Continue</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Profile Page -->
+            <div id="profile-page" class="page">
+                <div class="page-header">
+                    <h1>Profile Settings</h1>
+                    <p>Manage your account and preferences</p>
+                </div>
+
+                <div class="profile-content">
+                    <div class="profile-card">
+                        <div class="profile-avatar">
+                            <div class="avatar-image">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <button class="btn btn-sm btn-secondary">Change Photo</button>
+                        </div>
+                        <div class="profile-info">
+                            <div class="form-group">
+                                <label>Full Name</label>
+                                <input type="text" value="John Developer" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" value="john@example.com" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Role</label>
+                                <select class="form-input">
+                                    <option>Full-Stack Developer</option>
+                                    <option>Frontend Developer</option>
+                                    <option>Backend Developer</option>
+                                    <option>DevOps Engineer</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Experience Level</label>
+                                <select class="form-input">
+                                    <option>Senior (5+ years)</option>
+                                    <option>Mid-level (2-5 years)</option>
+                                    <option>Junior (0-2 years)</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
